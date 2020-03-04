@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <title>Logat Dayak</title>
+
+    <!-- vendor css -->
+    <link href="lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+
+    <!-- DashForge CSS -->
+    <link rel="stylesheet" href="assets/css/dashforge.css">
+    <link rel="stylesheet" href="assets/css/dashforge.dashboard.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/feather-icons/feather.min.js"></script>
+    <script src="lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/dashforge.js"></script>
+    <script src="assets/js/dashforge.aside.js"></script>
+
+    <style> 
+
+    .icon-user {
+      position: absolute;
+      left: 300px;
+      bottom: 30px;
+    }
+    </style>
+
+  </head>
+  <body>
+
+    <aside class="aside aside-fixed">
+      <div class="aside-header">
+        <a href="index.html" class="aside-logo">Logat<span>Dayak</span></a>
+        <a href="" class="aside-menu-link">
+          <i data-feather="menu"></i>
+          <i data-feather="x"></i>
+        </a>
+      </div>
+      <div class="aside-body">
+        <!-- <div class="aside-loggedin"> -->
+        <ul class="nav nav-aside">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i data-feather="book"></i> <span>Beranda</span></a></li> <br>
+          <li class="nav-item"><a href="tentang.html" class="nav-link"><i data-feather="alert-circle"></i> <span>Tentang Aplikasi</span></a></li>
+        </ul>
+      <!-- </div> -->
+    </aside>
+
+    <div class="content ht-100v pd-0">
+      <div class="content-header">
+        <div class="content-search">
+        </div>
+      </div><!-- content-header -->
+      
+      <!-- <form> -->
+      <form action="api/proses.php" method="post">
+          <div class="content-body">
+            <div class="container pd-x-0">
+              <!-- <div class="row"> -->
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="col-xs-5 mg-t-9">
+                        <h6>BAHASA INDONESIA</h6>
+                    </div>
+                    <div class="col-xs-2">
+                        <i data-feather="chevrons-right"></i>
+                    </div>
+                    <div class="col-xs-5">
+                        <!-- <div id = "display" style = "background-color:#39B54A;"></div>  -->
+                        <select id="subdayak" name="sub" class="custom-select" style="width: 100%;">
+                        </select>
+                    </div>
+                </div>
+    
+              <!-- </div> -->
+              <div class="row">
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <div data-label="Example" class="df-example demo-forms">
+                        <div class="row row-sm">
+                            <div class="col-sm-6 mg-t-15">
+                            <textarea class="form-control" rows="5" name="kata" placeholder="Bahasa Indonesia"></textarea>
+                            </div>
+                        </div><!-- row -->
+                    </div>
+                </div><!-- col -->
+    
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <div data-label="Example" class="df-example demo-forms">
+                        <div class="row row-sm">
+                            <div class="col-sm-6 mg-t-15" style="position: relative;" id="areaTerjemahan">
+                              <textarea class="form-control" rows="5" id="terjemahan" placeholder="Terjemahan" readonly></textarea> <br>
+                              <audio id="source" autoplay="false" src="" type="audio/mpeg"></audio>
+                            </div>
+                            <span title="Listen" class="icon-user" onclick="playAudio();">
+                                <i data-feather="volume-2"></i>
+                            </span>
+                        </div><!-- row -->
+                    </div>
+                </div><!-- col -->
+    
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <div class="row row-sm">
+                        <div class="col-sm-12 mg-t-0">
+                            <button type="submit" id="arti" class="btn btn-primary btn-block">Terjemahankan</button>
+                        </div>
+                    </div><!-- row -->
+
+                </div><!-- col -->
+
+                <div class="col-sm-12 col-lg-12 col-xs-12  mg-t-40">
+                  <div class="row row-sm justify-content-center align-items-center">
+                    <footer>
+                      © 2020 Siskom - Tri Floren Doni
+                    </footer>
+                  </div><!-- row -->
+
+              </div><!-- col -->
+            </div><!-- container -->
+          </div>
+      </form>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            $.getJSON("api/subapi.php", function(data){
+                $.each(data, function(key, value){
+                    $('#subdayak').append('<option value="'+value.id+'">'+value.sub+'</option>');
+                });
+            });
+        });
+    </script>
+
+    <script>
+      
+      var url_suara = 'http://localhost/logatdayak/admin/admin/upload/';
+      var list = [];
+
+      $(function(){
+          $('form').on('submit', function(e){
+              e.preventDefault();
+              $.ajax({
+                  type :'post',
+                  url :'api/proses.php',
+                  data: $('form').serialize(),
+                  success: function(result){
+                        console.log(result);
+                        data = jQuery.parseJSON(result);
+                        // console.log(data)
+                        list = [];
+                        $.each(data.suara, function (index, value) {
+                          list.push(new Audio(url_suara+value))
+                          // playaudioMulti(value)
+                        })
+                        $('#terjemahan').empty();
+                        $('#terjemahan').append(data['kata']);
+                        // $('#source').attr('src', url_suara+data['suara']);
+                      }
+                  })
+              })
+          })
+
+          function play(audio, callback) {
+            audio.pause();
+            audio.play();
+            if (callback) {
+              audio.addEventListener('ended', callback)
+            }
+          }
+
+          function playAudio() {
+            var listAudio = list;
+            // console.log(listAudio)
+            var index = 0;
+            function recursive_play() {
+              if (index + 1 === listAudio.length) {
+                play(listAudio[index], null);
+              } else {
+                play(listAudio[index], function () {
+                  index++;
+                  recursive_play();
+                })
+              }
+            }
+            recursive_play();
+            // console.log(list)
+          }
+    </script>
+
+    <script> 
+
+    </script>
+</html>

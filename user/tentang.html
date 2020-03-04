@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <title>Logat Dayak</title>
+
+    <!-- vendor css -->
+    <link href="lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+
+    <!-- DashForge CSS -->
+    <link rel="stylesheet" href="assets/css/dashforge.css">
+    <link rel="stylesheet" href="assets/css/dashforge.dashboard.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/feather-icons/feather.min.js"></script>
+    <script src="lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/dashforge.js"></script>
+    <script src="assets/js/dashforge.aside.js"></script>
+  </head>
+  <body>
+    <aside class="aside aside-fixed">
+      <div class="aside-header">
+        <a href="index.html" class="aside-logo">Logat<span>Dayak</span></a>
+        <a href="" class="aside-menu-link">
+          <i data-feather="menu"></i>
+          <i data-feather="x"></i>
+        </a>
+      </div>
+      <div class="aside-body">
+        <!-- <div class="aside-loggedin"> -->
+        <ul class="nav nav-aside">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i data-feather="book"></i> <span>Beranda</span></a></li> <br>
+          <li class="nav-item"><a href="tentang.html" class="nav-link"><i data-feather="alert-circle"></i> <span>Tentang Aplikasi</span></a></li>
+        </ul>
+      <!-- </div> -->
+    </aside>
+
+    <div class="content ht-100v pd-0">
+      <div class="content-header">
+        <div class="content-search">
+            <!-- <h3>Lorem ipsum dolor sit amet.</h3> -->
+        </div>
+      </div><!-- content-header -->
+      
+        <div class="content-body">
+            <div class="container pd-x-0">
+
+                <h4 class="mt-0 header-title">Tentang Aplikasi</h4>
+                <p class="text-muted m-b-30 font-14">Berikut Sedikit Mengenai Tentang Aplikasi</p>
+
+                <dl class="row">
+                    <dt class="col-sm-3">Nama Aplikasi</dt>
+                    <dd class="col-sm-9">Logat Dayak (Kamus Bahasa Indonsia ke Bahasa Dayak Kalimantan Barat) </dd>
+
+                    <dt class="col-sm-3 text-truncate">Metode Aplikasi</dt>
+                    <dd class="col-sm-9">Interpolation Search</dd>
+                </dl>
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- <script src="assets/js/dashforge.sampledata.js"></script> -->
+    <script>
+        $(document).ready(function(){
+            $.getJSON("api/subapi.php", function(data){
+                $.each(data, function(key, value){
+                    $('#subdayak').append('<option value="'+value.id+'">'+value.sub+'</option>');
+                });
+            });
+        });
+    </script>
+  <!-- <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p03.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582JQuX3gzRncXyFxiRWPSrCF16qaSFVaX0BPbIum18LJlSkVNtpoV2bhticXyLoGg5aH5nUAa6H6wICy4gLrOF95nRg5RhJdG0NVSB35u8ikrkRuQNRZUefC7rtGvROVbGHUJBHQrtLZDIpbJqSj%2fapchJ3wb6Yo%2fbkfSni7pxPwn8LVWoqb0AR9%2bfZJm6xg4v1PQQuxcSr9%2fk33l4gZpW2BOVUqEZEE4uY9Fyquq7FoHbyuf%2buDUTB4XlNANQsV3qC8BjEPrmJgvem%2b8%2f7o30PO3Ff%2bm%2blnEDohrgxSA3uDLDaDY3C0CiOGrFyWMc9j1A6pYgIz6Kysg8s4AvtyhB%2bHhnu1BMz9FaUEfW0Inf9%2fCMjAgG24bdFQ2ZBRfiKT%2bFmGeYoIaRJ%2fW0TnzLqzmZzVOhvp3bRtzca0Af57%2f6doMDh9qZf20v1po2OcrBfWiXneckKw0BG8sZ%2f4LmUAEPLS9esDpDdAxQyG4xheNYYpgGdrmGVtWAHV8acFG56l23VthzU5Ws9d4FpxqvDf7LY9%2fTgWIF4tXo6t9tUCX9Z3ZNhfsoMdEGPipVQokDGm7DQiPnB2KS%2fxPFalOQQYe6TRuw7VYOJE1XcPbuAciPYvS08byp7xw8JnNPsv43Bic1xAfMBz88eHe" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body> -->
+</html>

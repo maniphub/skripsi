@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +32,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon">
-          <i class="fab fa-twitch"></i>
+          <!-- <i class="fab fa-twitch"></i> -->
         </div>
         <div class="sidebar-brand-text mx-3">LOGAT DAYAK</div>
       </a>
@@ -51,7 +52,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Data Bahasa
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -68,7 +69,7 @@
       <li class="nav-item">
         <a class="nav-link" href="bdayak.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Data Bahasa Dayak</span></a>
+          <span>Data Kata Bahasa Dayak</span></a>
       </li>
       
       <!-- Divider -->
@@ -102,7 +103,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -149,7 +150,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Bahasa Dayak</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-language fa-2x text-gray-300"></i>
@@ -166,7 +167,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Kata Bahasa Dayak</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">1175</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -185,7 +186,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Audio Bahasa Dayak</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">1175</div>
                         </div>
                       </div>
                     </div>
@@ -222,7 +223,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Tentang Bahasa Dayak</h6>
                 </div>
                 <div class="card-body">
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                  <p>Bahasa Dayak merupakan bahasa daerah suku Dayak di pulau Kalimantan.  Terdapat 151 sub suku Dayak di Kalimantan Barat, dari 151 sub suku masih ditambah lagi dengan 100 sub suku dan terdapat 168 bahasa Dayak.</p>
                 </div>
             </div>
           </div>
@@ -282,11 +283,13 @@
   <script src="../js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="../vendor/chart.js/Chart.min.js"></script>
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="../js/demo/chart-area-demo.js"></script>
-  <script src="../js/demo/chart-pie-demo.js"></script>
+  <script src="../js/demo/datatables-demo.js"></script>
+
+
 
 </body>
 

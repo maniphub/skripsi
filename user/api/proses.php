@@ -3,7 +3,7 @@
     $sub = $_POST ['sub'];
     $kata = $_POST ['kata'];
     
-    // echo $sub;
+    echo $kata;
 
     $hasilterjemahan = array ();
     
@@ -13,31 +13,54 @@
         return  $Return;
     }
     
-    $kalimat = multiexplode(array(" ",", ","-"," () ",","),$kata);
-    
+    $kalimat = multiexplode(array(" ",", "," () ",","), $kata);
+
+    // print_r($kalimat);
+    print_r($kalimat);
     
     // kunci pencarian (konversi)
+    
     // get data 
     $getdayakkata = mysqli_query($link, "SELECT * FROM dayakkata WHERE dayakkata.id_dayakmaster = $sub");
     $high = mysqli_num_rows($getdayakkata);
+    // print_r($high);
+    
     $low = 0;
     $max = $high-1;
-
+    
     //get Data High and low
     $getDatahigh = "SELECT * FROM `dayakkata` WHERE dayakkata.id_dayakmaster = $sub";
     $data = mysqli_query($link, $getDatahigh);
     
+    
     $getDataAll = array ();
     foreach ($data as $key => $value) {
-        $idbindo = $value['id_bindo'];
+        $idbindo = $value['id_dayakkata'];
         $getDataAll[] = $idbindo; //all data 
     }
     $datalow = $getDataAll[$low];
     $datahigh = $getDataAll[$max];
+
+    // print("<pre>".print_r($getDataAll,true)."</pre>");
  
     $getKeyKata = array ();
 
-    // print_r($kalimat);
+    // foreach ($kalimat as $kata) {
+    //     # code...
+    //     // $query = "SELECT * FROM `dayakkata` INNER JOIN bindo ON dayakkata.id_bindo = bindo.id_bindo INNER JOIN dayakmaster ON dayakkata.id_dayakmaster = dayakmaster.id_dayakmaster WHERE `bindo`.`teks_indo` = '$kata' AND `dayakkata`.`id_dayakmaster` = $sub";
+    //     // $st = mysqli_query($link, $query);
+    //     $query = "SELECT * FROM `dayakkata` INNER JOIN bindo ON dayakkata.id_bindo = bindo.id_bindo INNER JOIN dayakmaster ON dayakkata.id_dayakmaster = dayakmaster.id_dayakmaster WHERE `bindo`.`teks_indo` = '$kata' AND `dayakkata`.`id_dayakmaster` = $sub";
+    //     $st = mysqli_query($link, $query);
+    //     while($row = mysqli_fetch_array($st)) {
+    //         $key = $row['id_dayakkata']; // get Key Kata
+    //     }
+
+    //     // echo $st;
+    //     echo "<br>" .$kata;
+    //     echo " : ";
+    //     echo $key;
+    // }
+
     foreach ($kalimat as $kata) {
         // echo $kata;
 
@@ -53,18 +76,24 @@
         } else {
         
             while($row = mysqli_fetch_array($st)) {
-                $key = $row['id_bindo']; // get Key Kata
+                $key = $row['id_dayakkata']; // get Key Kata
             }
 
-            // echo $key;
+            echo "<br>";
+            echo "key : ".$key."<br>";
+            echo "data low : ".$datalow."<br>";
+            echo "data high : ".$datahigh."<br>";
+            echo "max : ".$max."<br>";
+            echo "low : ".$low."<br>";
     
             // posisi == index
             $posisi = ($key-$datalow)/($datahigh-$datalow)*($max-$low)+$low;
+            echo "posisi : ".round($posisi);
+            
 
             
             // echo $posisi;
             // jika data key = data yang dicari 
-    
             $datakey = "SELECT * FROM `dayakkata` WHERE dayakkata.id_dayakmaster = $sub";
             $datakunci = mysqli_query($link, $datakey);
             $datakunciall = array ();
@@ -74,13 +103,17 @@
                 $datakunciall[] = $value;
             }
             
+            // print("<pre>".print_r($datakunciall,true)."</pre>");
             // print_r($datakunciall);
-
+            
             $dataposisi = $datakunciall[$posisi];
-            $nilaiposisi = $dataposisi['id_bindo'];
+            // print("<pre>".print_r($dataposisi,true)."</pre>");
+            echo "<hr>";
+            echo "nilai posisi : ".$nilaiposisi = $dataposisi['id_dayakkata'];
+            echo "<hr>";
+
             $kata = $dataposisi['teks_dayak'];
             
-    
             if ($key == $nilaiposisi) {
                 $queryHasil = "SELECT * FROM `dayakkata` INNER JOIN bindo ON dayakkata.id_bindo = bindo.id_bindo INNER JOIN dayakmaster ON dayakkata.id_dayakmaster = dayakmaster.id_dayakmaster WHERE `dayakkata`.`id_bindo` = '$nilaiposisi' AND `dayakkata`.`id_dayakmaster` = $sub";
                 $sthasil = mysqli_query($link, $queryHasil);
@@ -93,40 +126,63 @@
                     $hasilterjemahan[] = array('kata' => $kata,'teksdayak' => $teksdayak, 'suaradayak' => $suaradayak);
                 }
             }
-            elseif ($key < $nilaiposisi) {
-                $low = $posisi - 1;
-                $posisi = ($key-$datalow)/($datahigh-$datalow)*($max-$low)+$low;
-                //end
+            
+            if ($key < $nilaiposisi) {
+                $dataposisinew = $datakunciall[$posisinew];
+                // print_r ($dataposisinew);
+                $max = $posisinew - 1;
+                // echo $max;
+                $posisibaru = ($key-$datalow)/($datahigh-$datalow)*($max-$low)+$low;
+                echo round($posisibaru);
             }
             elseif ($key > $nilaiposisi) {
                 # code...
                 // jika data key > data yang dicari 
-                $max = $posisi + 1;
+                $low = round($posisi) + 1;
                 $posisi = ($key-$datalow)/($datahigh-$datalow)*($max-$low)+$low;
+                $posisi2 = round($posisi);
+
+                return $posisinew;
+
+                // $dataposisinew = $datakunciall[$posisinew];
+                // // print_r ($dataposisinew);
+                // $max = $posisinew - 1;
+                // // echo $max;
+                // $posisibaru = ($key-$datalow)/($datahigh-$datalow)*($max-$low)+$low;
+                // echo round($posisibaru);
+
+                // $dataposisibaru = $datakunciall[$posisibaru];
+                // print_r($dataposisibaru);
+
+
+
+                
                 //end
             } 
         }
     }
+
+    // print("<pre>".print_r($hasilterjemahan,true)."</pre>");
     
 
-    $gabungan = implode(' ', array_map(function ($entry) {
-        return $entry['kata'];
-      }, $hasilterjemahan));
+    // $gabungan = implode(' ', array_map(function ($entry) {
+    //     return $entry['kata'];
+    //   }, $hasilterjemahan));
 
-    // $suara = "hello";
+    // // $suara = "hello";
     
-    $suara = $hasilterjemahan[0]['suaradayak'];
+    // $suara = $hasilterjemahan[0]['suaradayak'];
       
-    $titlesuara = array();
-    foreach ($hasilterjemahan as $key => $item) {
+    // $titlesuara = array();
+    // foreach ($hasilterjemahan as $key => $item) {
         
-        $titlesuara[] = $item['suaradayak'];
+    //     $titlesuara[] = $item['suaradayak'];
 
-        // echo "<br>";
-    }
+    //     // echo "<br>";
+    // }
       
-    // $kalimatterjemahan = array('kata' => $gabungan,'suara' => $suara);
-    $kalimatterjemahan = array('kata' => $gabungan,'suara' => $titlesuara);
-    $data = json_encode($kalimatterjemahan);
-    echo $data;
+    // // $kalimatterjemahan = array('kata' => $gabungan,'suara' => $suara);
+    // $kalimatterjemahan = array('kata' => $gabungan,'suara' => $titlesuara);
+    // $data = json_encode($kalimatterjemahan);
+    // echo $data;
  ?>

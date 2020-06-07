@@ -32,8 +32,8 @@
 
     .icon-user {
       position: absolute;
-      left: 300px;
-      bottom: 30px;
+      left: 308px;
+      bottom: 31px;
     }
     </style>
 
@@ -76,7 +76,6 @@
                         <i data-feather="chevrons-right"></i>
                     </div>
                     <div class="col-xs-5">
-                        <!-- <div id = "display" style = "background-color:#39B54A;"></div>  -->
                         <select id="subdayak" name="sub" class="custom-select" style="width: 100%;">
                         </select>
                     </div>
@@ -136,10 +135,10 @@
                 $.each(data, function(key, value){
                     $('#subdayak').append('<option value="'+value.id+'">'+value.sub+'</option>');
                 });
-            });
+            }); 
         });
     </script>
-
+<!-- 
     <script>
       
       var url_suara = 'http://localhost/logatdayak/admin/admin/upload/';
@@ -153,9 +152,9 @@
                   url :'api/proses.php',
                   data: $('form').serialize(),
                   success: function(result){
-                        console.log(result);
+                        // console.log(result);
                         data = jQuery.parseJSON(result);
-                        // console.log(data)
+                        // console.log(data);
                         list = [];
                         $.each(data.suara, function (index, value) {
                           list.push(new Audio(url_suara+value))
@@ -194,9 +193,5 @@
             recursive_play();
             // console.log(list)
           }
-    </script>
-
-    <script> 
-
-    </script>
+    </script> -->
 </html>

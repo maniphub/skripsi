@@ -13,15 +13,16 @@
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="../https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
-
-  
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 </head>
 
@@ -36,7 +37,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon">
-          <i class="fab fa-twitch"></i>
+          <!-- <i class="fab fa-twitch"></i> -->
         </div>
         <div class="sidebar-brand-text mx-3">LOGAT DAYAK</div>
       </a>
@@ -56,7 +57,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Data Bahasa
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -73,7 +74,7 @@
       <li class="nav-item">
         <a class="nav-link" href="bdayak.php">
           <i class="fas fa-fw fa-table"></i>
-          <span>Data Bahasa Dayak</span></a>
+          <span>Data Kata Bahasa Dayak</span></a>
       </li>
 
       <!-- Divider -->
@@ -107,7 +108,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -128,7 +129,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Data Bahasa Dayak</h1>
+            <h1 class="h3 mb-2 text-gray-800">Data Kata Bahasa Dayak</h1>
             <br>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Tambah Data
@@ -292,9 +293,6 @@
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

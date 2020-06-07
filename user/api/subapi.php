@@ -5,7 +5,7 @@ include('db_connect.php');
 
 $query = "SELECT * FROM `dayakmaster`";
 
- $result = mysqli_query($link,$query) or die(mysqli_error());	
+$result = mysqli_query($link,$query) or die(mysqli_error());	
 
 //  print_r($result);
 
